@@ -1,7 +1,7 @@
-# rc-tree-select
+# rc-ref-select
 ---
 
-React TreeSelect Component
+React RefSelect Component
 
 [![NPM version][npm-image]][npm-url]
 [![build status][travis-image]][travis-url]
@@ -9,18 +9,18 @@ React TreeSelect Component
 [![gemnasium deps][gemnasium-image]][gemnasium-url]
 [![npm download][download-image]][download-url]
 
-[npm-image]: http://img.shields.io/npm/v/rc-tree-select.svg?style=flat-square
-[npm-url]: http://npmjs.org/package/rc-tree-select
-[travis-image]: https://img.shields.io/travis/react-component/tree-select.svg?style=flat-square
-[travis-url]: https://travis-ci.org/react-component/tree-select
-[codecov-image]: https://img.shields.io/codecov/c/github/react-component/tree-select/master.svg?style=flat-square
-[codecov-url]: https://codecov.io/gh/react-component/tree-select/branch/master
-[gemnasium-image]: http://img.shields.io/gemnasium/react-component/tree-select.svg?style=flat-square
-[gemnasium-url]: https://gemnasium.com/react-component/tree-select
+[npm-image]: http://img.shields.io/npm/v/rc-ref-select.svg?style=flat-square
+[npm-url]: http://npmjs.org/package/rc-ref-select
+[travis-image]: https://img.shields.io/travis/react-component/ref-select.svg?style=flat-square
+[travis-url]: https://travis-ci.org/react-component/ref-select
+[codecov-image]: https://img.shields.io/codecov/c/github/react-component/ref-select/master.svg?style=flat-square
+[codecov-url]: https://codecov.io/gh/react-component/ref-select/branch/master
+[gemnasium-image]: http://img.shields.io/gemnasium/react-component/ref-select.svg?style=flat-square
+[gemnasium-url]: https://gemnasium.com/react-component/ref-select
 [node-image]: https://img.shields.io/badge/node.js-%3E=_0.10-green.svg?style=flat-square
 [node-url]: http://nodejs.org/download/
-[download-image]: https://img.shields.io/npm/dm/rc-tree-select.svg?style=flat-square
-[download-url]: https://npmjs.org/package/rc-tree-select
+[download-image]: https://img.shields.io/npm/dm/rc-ref-select.svg?style=flat-square
+[download-url]: https://npmjs.org/package/rc-ref-select
 
 
 ## Screenshots
@@ -39,11 +39,11 @@ npm start
 
 http://localhost:8000/examples/
 
-online example: http://react-component.github.io/tree-select/
+online example: http://react-component.github.io/ref-select/
 
 ## install
 
-[![rc-tree-select](https://nodei.co/npm/rc-tree-select.png)](https://npmjs.org/package/rc-tree-select)
+[![rc-ref-select](https://nodei.co/npm/rc-ref-select.png)](https://npmjs.org/package/rc-ref-select)
 
 ## API
 

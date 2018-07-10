@@ -1,11 +1,11 @@
 /* eslint react/no-multi-comp:0, no-console:0, no-alert: 0 */
 
-import 'rc-tree-select/assets/index.less';
+import 'rc-ref-select/assets/index.less';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'rc-dialog/assets/index.css';
 import Dialog from 'rc-dialog';
-import TreeSelect, { TreeNode, SHOW_PARENT } from 'rc-tree-select';
+import TreeSelect, { TreeNode, SHOW_PARENT } from 'rc-ref-select';
 import { gData } from './util';
 import './demo.less';
 
@@ -154,8 +154,8 @@ class Demo extends React.Component {
             <TreeSelect
               getPopupContainer={(triggerNode) => triggerNode.parentNode}
               style={{ width: 300 }}
-              transitionName="rc-tree-select-dropdown-slide-up"
-              choiceTransitionName="rc-tree-select-selection__choice-zoom"
+              transitionName="rc-ref-select-dropdown-slide-up"
+              choiceTransitionName="rc-ref-select-selection__choice-zoom"
               dropdownStyle={{ maxHeight: 200, overflow: 'auto', zIndex: 1500 }}
               placeholder={<i>请下拉选择</i>}
               searchPlaceholder="please search"
@@ -173,8 +173,8 @@ class Demo extends React.Component {
         <h2>single select</h2>
         <TreeSelect
           style={{ width: 300 }}
-          transitionName="rc-tree-select-dropdown-slide-up"
-          choiceTransitionName="rc-tree-select-selection__choice-zoom"
+          transitionName="rc-ref-select-dropdown-slide-up"
+          choiceTransitionName="rc-ref-select-selection__choice-zoom"
           dropdownStyle={{ maxHeight: 200, overflow: 'auto' }}
           placeholder={<i>请下拉选择</i>}
           searchPlaceholder="please search"
@@ -212,8 +212,8 @@ class Demo extends React.Component {
         <h2>single select (just select children)</h2>
         <TreeSelect
           style={{ width: 300 }}
-          transitionName="rc-tree-select-dropdown-slide-up"
-          choiceTransitionName="rc-tree-select-selection__choice-zoom"
+          transitionName="rc-ref-select-dropdown-slide-up"
+          choiceTransitionName="rc-ref-select-selection__choice-zoom"
           dropdownStyle={{ maxHeight: 200, overflow: 'auto' }}
           placeholder={<i>请下拉选择</i>}
           searchPlaceholder="please search"
@@ -228,8 +228,8 @@ class Demo extends React.Component {
         <h2>multiple select</h2>
         <TreeSelect
           style={{ width: 300 }}
-          transitionName="rc-tree-select-dropdown-slide-up"
-          choiceTransitionName="rc-tree-select-selection__choice-zoom"
+          transitionName="rc-ref-select-dropdown-slide-up"
+          choiceTransitionName="rc-ref-select-selection__choice-zoom"
           dropdownStyle={{ maxHeight: 200, overflow: 'auto' }}
           placeholder={<i>请下拉选择</i>}
           searchPlaceholder="please search"
@@ -245,8 +245,8 @@ class Demo extends React.Component {
         <h2>check select</h2>
         <TreeSelect
           className="check-select"
-          transitionName="rc-tree-select-dropdown-slide-up"
-          choiceTransitionName="rc-tree-select-selection__choice-zoom"
+          transitionName="rc-ref-select-dropdown-slide-up"
+          choiceTransitionName="rc-ref-select-selection__choice-zoom"
           dropdownStyle={{ height: 200, overflow: 'auto' }}
           dropdownPopupAlign={{ overflow: { adjustY: 0, adjustX: 0 }, offset: [0, 2] }}
           onDropdownVisibleChange={this.onDropdownVisibleChange}
@@ -270,8 +270,8 @@ class Demo extends React.Component {
         <h2>labelInValue & show path</h2>
         <TreeSelect
           style={{ width: 500 }}
-          transitionName="rc-tree-select-dropdown-slide-up"
-          choiceTransitionName="rc-tree-select-selection__choice-zoom"
+          transitionName="rc-ref-select-dropdown-slide-up"
+          choiceTransitionName="rc-ref-select-selection__choice-zoom"
           dropdownStyle={{ maxHeight: 200, overflow: 'auto' }}
           placeholder={<i>请下拉选择</i>}
           searchPlaceholder="please search"

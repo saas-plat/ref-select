@@ -1,9 +1,9 @@
 /* eslint react/no-multi-comp:0, no-console:0 */
 
-import 'rc-tree-select/assets/index.less';
+import 'rc-ref-select/assets/index.less';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import TreeSelect, { SHOW_PARENT } from 'rc-tree-select';
+import TreeSelect, { SHOW_PARENT } from 'rc-ref-select';
 import { gData } from './util';
 
 class Demo extends React.Component {
@@ -57,8 +57,8 @@ class Demo extends React.Component {
         <h2>check select</h2>
         <TreeSelect
           style={{ width: 300 }}
-          transitionName="rc-tree-select-dropdown-slide-up"
-          choiceTransitionName="rc-tree-select-selection__choice-zoom"
+          transitionName="rc-ref-select-dropdown-slide-up"
+          choiceTransitionName="rc-ref-select-selection__choice-zoom"
           dropdownStyle={{ height: 200, overflow: 'auto' }}
           dropdownPopupAlign={{ overflow: { adjustY: 0, adjustX: 0 }, offset: [0, 2] }}
           placeholder={<i>请下拉选择</i>}
