@@ -26,7 +26,7 @@ class SearchInput extends React.Component {
   };
 
   static contextTypes = {
-    rcTreeSelect: PropTypes.shape({
+    rcRefSelect: PropTypes.shape({
       ...searchContextTypes,
     }),
   };
@@ -93,7 +93,7 @@ class SearchInput extends React.Component {
 
   render() {
     const { searchValue, prefixCls, disabled, renderPlaceholder, open, ariaId } = this.props;
-    const { rcTreeSelect: {
+    const { rcRefSelect: {
       onSearchInputChange, onSearchInputKeyDown,
     } } = this.context;
 

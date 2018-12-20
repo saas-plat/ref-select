@@ -30,7 +30,7 @@ class MultipleSelector extends React.Component {
   };
 
   static contextTypes = {
-    rcTreeSelect: PropTypes.shape({
+    rcRefSelect: PropTypes.shape({
       ...multipleSelectorContextTypes,
 
       onSearchInputChange: PropTypes.func,
@@ -86,7 +86,7 @@ class MultipleSelector extends React.Component {
       onChoiceAnimationLeave,
       labelInValue, maxTagCount, maxTagPlaceholder,
     } = this.props;
-    const { rcTreeSelect: { onMultipleSelectorRemove } } = this.context;
+    const { rcRefSelect: { onMultipleSelectorRemove } } = this.context;
 
     // Check if `maxTagCount` is set
     let myValueList = selectorValueList;

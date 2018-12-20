@@ -19,22 +19,22 @@ export function valueProp(...args) {
   if (isLabelInValue(props)) {
     const err = genArrProps(PropTypes.shape({
       label: PropTypes.node,
-      value: PropTypes.string,
+      value: PropTypes.object,
     }))(...args);
     if (err) {
       return new Error(
         `Invalid prop \`${propName}\` supplied to \`${Component}\`. ` +
-        `You should use { label: string, value: string } or [{ label: string, value: string }] instead.`
+        `You should use { label: string, value: object } or [{ label: string, value: object }] instead.`
       );
     }
     return null;
   }
 
-  const err = genArrProps(PropTypes.string)(...args);
+  const err = genArrProps(PropTypes.object)(...args);
   if (err) {
     return new Error(
       `Invalid prop \`${propName}\` supplied to \`${Component}\`. ` +
-      `You should use string or [string] instead.`
+      `You should use object or [object] instead.`
     );
   }
   return null;

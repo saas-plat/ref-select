@@ -1,73 +1,73 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { polyfill } from 'react-lifecycles-compat';
-import Tree from 'rc-tree';
+import {
+  polyfill
+} from 'react-lifecycles-compat';
+import Table from 'rc-table';
 
 export const popupContextTypes = {
   onPopupKeyDown: PropTypes.func.isRequired,
-  onTreeNodeSelect: PropTypes.func.isRequired,
-  onTreeNodeCheck: PropTypes.func.isRequired,
+  onTableRowSelect: PropTypes.func.isRequired,
+  onTableRowCheck: PropTypes.func.isRequired,
 };
 
 class BasePopup extends React.Component {
   static propTypes = {
     prefixCls: PropTypes.string,
-    upperSearchValue: PropTypes.string,
     valueList: PropTypes.array,
     valueEntities: PropTypes.object,
     keyEntities: PropTypes.object,
-    treeIcon: PropTypes.bool,
-    treeLine: PropTypes.bool,
-    treeNodeFilterProp: PropTypes.string,
-    treeCheckable: PropTypes.oneOfType([
+    // treeIcon: PropTypes.bool,
+    // treeLine: PropTypes.bool,
+    rowCheckable: PropTypes.oneOfType([
       PropTypes.bool,
       PropTypes.node,
     ]),
-    treeCheckStrictly: PropTypes.bool,
-    treeDefaultExpandAll: PropTypes.bool,
-    treeDefaultExpandedKeys: PropTypes.array,
+    rowCheckStrictly: PropTypes.bool,
+    emptyText: PropTypes.string,
+    defaultExpandAllRows: PropTypes.bool,
+    defaultExpandedRowKeys: PropTypes.array,
+    // expandedRowKeys: PropTypes.array,
     loadData: PropTypes.func,
     multiple: PropTypes.bool,
-
-    treeNodes: PropTypes.node,
-    filteredTreeNodes: PropTypes.node,
-    notFoundContent: PropTypes.string,
+    data: PropTypes.array,
+    columns: PropTypes.array,
+    tableScroll: PropTypes.object,
 
     ariaId: PropTypes.string,
 
     // HOC
     renderSearch: PropTypes.func,
+    renderPopupContainer: PropTypes.func,
   };
 
+  static defaultProps = {
+    renderPopupContainer: node=>node
+  }
+
   static contextTypes = {
-    rcTreeSelect: PropTypes.shape({
+    rcRefSelect: PropTypes.shape({
       ...popupContextTypes,
     }),
   };
 
-  constructor(props) {
+  constructor() {
     super();
-
-    const {
-      treeDefaultExpandAll, treeDefaultExpandedKeys,
-      keyEntities,
-    } = props;
-
-    // TODO: make `expandedKeyList` control
-    let expandedKeyList = treeDefaultExpandedKeys;
-    if (treeDefaultExpandAll) {
-      expandedKeyList = Object.keys(keyEntities);
-    }
 
     this.state = {
       keyList: [],
-      expandedKeyList,
     };
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    const { prevProps = {} } = prevState || {};
-    const { valueList, valueEntities, keyEntities, filteredTreeNodes } = nextProps;
+    const {
+      prevProps = {}
+    } = prevState || {};
+    const {
+      valueList,
+      valueEntities,
+      // keyEntities
+    } = nextProps;
 
     const newState = {
       prevProps: nextProps,
@@ -76,114 +76,63 @@ class BasePopup extends React.Component {
     // Check value update
     if (valueList !== prevProps.valueList) {
       newState.keyList = valueList
-        .map(({ value }) => valueEntities[value])
+        .map(({
+          value
+        }) => valueEntities[value])
         .filter(entity => entity)
-        .map(({ key }) => key);
-    }
-
-    // Show all when tree is in filter mode
-    if (filteredTreeNodes && filteredTreeNodes.length && filteredTreeNodes !== prevProps.filteredTreeNodes) {
-      newState.expandedKeyList = Object.keys(keyEntities);
+        .map(({
+          key
+        }) => key);
     }
 
     return newState;
   }
 
-  onTreeExpand = (expandedKeyList) => {
-    this.setState({ expandedKeyList });
-  };
-
-  /**
-   * This method pass to Tree component which is used for add filtered class
-   * in TreeNode > li
-   */
-  filterTreeNode = (treeNode) => {
-    const { upperSearchValue, treeNodeFilterProp } = this.props;
-
-    const filterVal = treeNode.props[treeNodeFilterProp];
-    if (typeof filterVal === 'string') {
-      return upperSearchValue && (filterVal).toUpperCase().indexOf(upperSearchValue) !== -1;
+  handleRow = (record, index) => {
+    const {
+      keyList,
+    } = this.state;
+    let selectedRows;
+    if (this.props.rowCheckable) {
+      selectedRows = keyList;
+    } else {
+      selectedRows = [record];
     }
-
-    return false;
-  };
-
-  renderNotFound = () => {
-    const { prefixCls, notFoundContent } = this.props;
-
-    return (
-      <span className={`${prefixCls}-not-found`}>
-        {notFoundContent}
-      </span>
-    );
-  };
+    return {
+      onClick: () => {
+        this.context.rcRefSelect.onTableRowSelect(this, {
+          rowIndex: index,
+          value: record,
+          selectedRows,
+          selected: true
+        })
+      }
+    }
+  }
 
   render() {
-    const { keyList, expandedKeyList } = this.state;
     const {
       prefixCls,
-      treeNodes, filteredTreeNodes,
-      treeIcon, treeLine, treeCheckable, treeCheckStrictly, multiple,
-      loadData,
+      data,
+      emptyText,
+      columns,
+      tableScroll,
+      defaultExpandAllRows,
+      defaultExpandedRowKeys,
+      // loadData,
       ariaId,
       renderSearch,
+      renderPopupContainer
     } = this.props;
-    const { rcTreeSelect: {
-      onPopupKeyDown,
-      onTreeNodeSelect,
-      onTreeNodeCheck,
-    } } = this.context;
-
-    const treeProps = {};
-
-    if (treeCheckable) {
-      treeProps.checkedKeys = keyList;
-    } else {
-      treeProps.selectedKeys = keyList;
-    }
-
-    let $notFound;
-    let $treeNodes;
-    if (filteredTreeNodes) {
-      if (filteredTreeNodes.length) {
-        treeProps.checkStrictly = true;
-        $treeNodes = filteredTreeNodes;
-      } else {
-        $notFound = this.renderNotFound();
+    const {
+      rcRefSelect: {
+        onPopupKeyDown,
       }
-    } else if (!treeNodes.length) {
-      $notFound = this.renderNotFound();
-    } else {
-      $treeNodes = treeNodes;
-    }
+    } = this.context;
 
-    let $tree;
-    if ($notFound) {
-      $tree = $notFound;
-    } else {
-      $tree = (
-        <Tree
-          prefixCls={`${prefixCls}-tree`}
-          showIcon={treeIcon}
-          showLine={treeLine}
-          selectable={!treeCheckable}
-          checkable={treeCheckable}
-          checkStrictly={treeCheckStrictly}
-          multiple={multiple}
-          loadData={loadData}
-          expandedKeys={expandedKeyList}
-          filterTreeNode={this.filterTreeNode}
-          onSelect={onTreeNodeSelect}
-          onCheck={onTreeNodeCheck}
-          onExpand={this.onTreeExpand}
-          {...treeProps}
-        >
-          {$treeNodes}
-        </Tree>
-      );
-    }
 
-    return (
+
+    const ele = (
       <div
         role="listbox"
         id={ariaId}
@@ -191,9 +140,12 @@ class BasePopup extends React.Component {
         tabIndex={-1}
       >
         {renderSearch ? renderSearch() : null}
-        {$tree}
+        <Table prefixCls={`${prefixCls}-table`} useFixedHeader showHeader={false} columns={columns} data={data} scroll={tableScroll} emptyText={emptyText}
+          defaultExpandAllRows={defaultExpandAllRows} defaultExpandedRowKeys={defaultExpandedRowKeys} onRow={this.handleRow}/>
       </div>
     );
+
+    return renderPopupContainer(ele);
   }
 }
 

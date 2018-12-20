@@ -22,7 +22,7 @@ class SingleSelector extends React.Component {
   };
 
   renderSelection = () => {
-    const { selectorValueList, placeholder, prefixCls } = this.props;
+    const { selectorValueList, tableRowFilterProp, placeholder, prefixCls } = this.props;
 
     let innerNode;
 
@@ -34,7 +34,7 @@ class SingleSelector extends React.Component {
           title={toTitle(label)}
           className={`${prefixCls}-selection-selected-value`}
         >
-          {label || value}
+          {label || value[tableRowFilterProp]}
         </span>
       );
     } else {

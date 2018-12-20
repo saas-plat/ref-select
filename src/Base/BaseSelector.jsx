@@ -24,6 +24,7 @@ export const selectorPropTypes = {
   onBlur: PropTypes.func,
   onFocus: PropTypes.func,
   removeSelected: PropTypes.func,
+  tableRowFilterProp: PropTypes.string,
 
   // Pass by component
   ariaId: PropTypes.string,
@@ -48,7 +49,7 @@ export default function (modeName) {
     };
 
     static contextTypes = {
-      rcTreeSelect: PropTypes.shape({
+      rcRefSelect: PropTypes.shape({
         ...selectorContextTypes,
       }),
     };
@@ -65,7 +66,7 @@ export default function (modeName) {
 
     onFocus = (...args) => {
       const { onFocus, focused } = this.props;
-      const { rcTreeSelect: { onSelectorFocus } } = this.context;
+      const { rcRefSelect: { onSelectorFocus } } = this.context;
 
       if (!focused) {
         onSelectorFocus();
@@ -78,7 +79,7 @@ export default function (modeName) {
 
     onBlur = (...args) => {
       const { onBlur } = this.props;
-      const { rcTreeSelect: { onSelectorBlur } } = this.context;
+      const { rcRefSelect: { onSelectorBlur } } = this.context;
 
       // TODO: Not trigger when is inner component get focused
       onSelectorBlur();
@@ -98,7 +99,7 @@ export default function (modeName) {
 
     renderClear() {
       const { prefixCls, allowClear, valueList } = this.props;
-      const { rcTreeSelect: { onSelectorClear } } = this.context;
+      const { rcRefSelect: { onSelectorClear } } = this.context;
 
       if (!allowClear || !valueList.length || !valueList[0].value) {
         return null;
@@ -139,7 +140,7 @@ export default function (modeName) {
         renderSelection, renderPlaceholder,
         tabIndex,
       } = this.props;
-      const { rcTreeSelect: { onSelectorKeyDown } } = this.context;
+      const { rcRefSelect: { onSelectorKeyDown } } = this.context;
 
       let myTabIndex = tabIndex;
       if (disabled) {
