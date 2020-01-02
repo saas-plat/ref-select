@@ -2,10 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Animate from 'rc-animate';
 
-import generateSelector, { selectorPropTypes } from '../../Base/BaseSelector';
+import generateSelector, {
+  selectorPropTypes
+} from '../../Base/BaseSelector';
 import SearchInput from '../../SearchInput';
 import Selection from './Selection';
-import { createRef } from '../../util';
+import {
+  createRef
+} from '../../util';
 
 const Selector = generateSelector('multiple');
 
@@ -57,8 +61,10 @@ class MultipleSelector extends React.Component {
   renderPlaceholder = () => {
     const {
       prefixCls,
-      placeholder, searchPlaceholder,
-      searchValue, selectorValueList,
+      placeholder,
+      searchPlaceholder,
+      searchValue,
+      selectorValueList,
     } = this.props;
 
     const currentPlaceholder = placeholder || searchPlaceholder;
@@ -83,12 +89,20 @@ class MultipleSelector extends React.Component {
 
   renderSelection = () => {
     const {
-      selectorValueList, choiceTransitionName, prefixCls,
+      selectorValueList,
+      choiceTransitionName,
+      prefixCls,
       onChoiceAnimationLeave,
-      labelInValue, maxTagCount, maxTagPlaceholder,
+      labelInValue,
+      maxTagCount,
+      maxTagPlaceholder,
       removeIcon
     } = this.props;
-    const { rcRefSelect: { onMultipleSelectorRemove } } = this.context;
+    const {
+      rcRefSelect: {
+        onMultipleSelectorRemove
+      }
+    } = this.context;
 
     // Check if `maxTagCount` is set
     let myValueList = selectorValueList;
@@ -97,7 +111,10 @@ class MultipleSelector extends React.Component {
     }
 
     // Selector node list
-    const selectedValueNodes = myValueList.map(({ label, value }) => (
+    const selectedValueNodes = myValueList.map(({
+      label,
+      value
+    }) => (
       <Selection
         {...this.props}
         key={value}
@@ -116,7 +133,9 @@ class MultipleSelector extends React.Component {
       } else if (typeof maxTagPlaceholder === 'function') {
         const restValueList = selectorValueList.slice(maxTagCount);
         content = maxTagPlaceholder(
-          labelInValue ? restValueList : restValueList.map(({ value }) => value)
+          labelInValue ? restValueList : restValueList.map(({
+            value
+          }) => value)
         );
       }
 
@@ -161,7 +180,6 @@ class MultipleSelector extends React.Component {
       <Selector
         {...this.props}
         tabIndex={-1}
-        showArrow={false}
         renderSelection={this.renderSelection}
         renderPlaceholder={this.renderPlaceholder}
       />

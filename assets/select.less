@@ -30,24 +30,23 @@
     background-color: #fff;
   }
 
-  // arrow
-  &-arrow {
+  // refer
+  &-refer {
     height: 26px;
     position: absolute;
     top: 1px;
     right: 1px;
     width: 20px;
     b {
-      border-color: #999999 transparent transparent transparent;
-      border-style: solid;
-      border-width: 5px 4px 0 4px;
-      height: 0;
-      width: 0;
-      margin-left: -4px;
-      margin-top: -2px;
+      background-color: #999999;
+      height: 12px;
+      width: 12px;
+      margin-left: -6px;
+      margin-top: -6px;
       position: absolute;
       top: 50%;
       left: 50%;
+      border-radius: 6px;
     }
   }
 
@@ -500,10 +499,7 @@
   }
 
   &-open {
-    .@{selectPrefixCls}-arrow b {
-      border-color: transparent transparent #888 transparent;
-      border-width: 0 4px 5px 4px;
-    }
+     
   }
 
   &-not-found {

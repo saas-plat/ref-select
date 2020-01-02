@@ -73,7 +73,6 @@ class Select extends React.Component {
     prefixCls: PropTypes.string,
     prefixAria: PropTypes.string,
     multiple: PropTypes.bool,
-    showArrow: PropTypes.bool, // 这里要改成扩展按钮
     open: PropTypes.bool,
     value: valueProp,
     autoFocus: PropTypes.bool,
@@ -82,6 +81,11 @@ class Select extends React.Component {
     defaultValue: valueProp,
 
     removeIcon: PropTypes.node,
+
+    // 显示参照按钮
+    showRefer: PropTypes.bool,
+    referIcon: PropTypes.node,
+    onRefer: PropTypes.func,
 
     showSearch: PropTypes.bool,
     placeholder: PropTypes.node,
@@ -142,7 +146,7 @@ class Select extends React.Component {
   static defaultProps = {
     prefixCls: 'rc-ref-select',
     prefixAria: 'rc-ref-select',
-    showArrow: true,
+    showRefer: true,
     showSearch: true,
     autoClearSearchValue: true,
     showCheckedStrategy: SHOW_CHILD,
@@ -990,7 +994,9 @@ class Select extends React.Component {
     } = this.state;
     const {
       prefixCls,
-      removeIcon
+      removeIcon,
+      referIcon,
+      onRefer
     } = this.props;
     const isMultiple = this.isMultiple();
 
@@ -1005,6 +1011,8 @@ class Select extends React.Component {
       open,
       focused,
       removeIcon,
+      referIcon,
+      onRefer,
       dropdownPrefixCls: `${prefixCls}-dropdown`,
       ariaId: this.ariaId,
     };

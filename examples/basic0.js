@@ -108,6 +108,7 @@ class Demo extends React.Component {
           filterTreeNode={false}
           onSearch={this.onSearch}
           open={this.state.tsOpen}
+          onRefer={this.onSelect}
           onChange={(value, ...args) => {
             console.log('onChange', value, ...args);
             if (value === '0-0-0-0-value') {

@@ -19,7 +19,8 @@ export const selectorPropTypes = {
   open: PropTypes.bool,
   valueList: PropTypes.array, // Name as valueList to diff the single value
   allowClear: PropTypes.bool,
-  showArrow: PropTypes.bool,
+  showRefer: PropTypes.bool,
+  referIcon: PropTypes.node,
   onClick: PropTypes.func,
   onBlur: PropTypes.func,
   onFocus: PropTypes.func,
@@ -89,6 +90,14 @@ export default function (modeName) {
       }
     };
 
+    onRefer = (...args) => {
+      const {onRefer} = this.props;
+      args[0].stopPropagation();
+      if (onRefer) {
+        onRefer(...args);
+      }
+    };
+
     focus = () => {
       this.domRef.current.focus();
     }
@@ -114,20 +123,21 @@ export default function (modeName) {
       );
     }
 
-    renderArrow() {
-      const { prefixCls, showArrow } = this.props;
-      if (!showArrow) {
+    renderRefer() {
+      const { prefixCls, showRefer, referIcon } = this.props;
+      if (!showRefer) {
         return null;
       }
 
       return (
-        <span
-          key="arrow"
-          className={`${prefixCls}-arrow`}
+        <a
+          key="refer"
+          onClick={this.onRefer}
+          className={`${prefixCls}-refer`}
           style={{ outline: 'none' }}
         >
-          <b />
-        </span>
+          {referIcon || <b />}
+        </a>
       );
     }
 
@@ -183,7 +193,7 @@ export default function (modeName) {
           >
             {renderSelection()}
             {this.renderClear()}
-            {this.renderArrow()}
+            {this.renderRefer()}
 
             {renderPlaceholder && renderPlaceholder()}
           </span>
