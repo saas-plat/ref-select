@@ -81,6 +81,8 @@ class Select extends React.Component {
     defaultOpen: PropTypes.bool,
     defaultValue: valueProp,
 
+    removeIcon: PropTypes.node,
+
     showSearch: PropTypes.bool,
     placeholder: PropTypes.node,
     inputValue: PropTypes.string, // [Legacy] Deprecated. Use `searchValue` instead.
@@ -116,6 +118,9 @@ class Select extends React.Component {
     columns: PropTypes.array,
     tableScroll: PropTypes.object,
     emptyText: PropTypes.string,
+    showHeader: PropTypes.bool,
+    tableTitle: PropTypes.func,
+    tableFooter: PropTypes.func,
 
     onSearch: PropTypes.func,
     onSelect: PropTypes.func,
@@ -149,6 +154,7 @@ class Select extends React.Component {
     rowLabelProp: 'name',
     emptyText: 'No Data',
     dataSource: [],
+    showHeader: false,
     columns: [{
       title: 'Code',
       dataIndex: 'code',
@@ -983,7 +989,8 @@ class Select extends React.Component {
       filteredTableRows,
     } = this.state;
     const {
-      prefixCls
+      prefixCls,
+      removeIcon
     } = this.props;
     const isMultiple = this.isMultiple();
 
@@ -997,6 +1004,7 @@ class Select extends React.Component {
       searchValue,
       open,
       focused,
+      removeIcon,
       dropdownPrefixCls: `${prefixCls}-dropdown`,
       ariaId: this.ariaId,
     };

@@ -4,7 +4,7 @@ import 'rc-ref-select/assets/index.less';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'rc-dialog/assets/index.css';
-import TreeSelect from 'rc-ref-select';
+import RefSelect from 'rc-ref-select';
 import './demo.less';
 
 
@@ -92,7 +92,7 @@ class Demo extends React.Component {
       <div style={{ margin: 20 }}>
 
         <h2>single select</h2>
-        <TreeSelect
+        <RefSelect
           style={{ width: 300 }}
           transitionName="rc-ref-select-dropdown-slide-up"
           choiceTransitionName="rc-ref-select-selection__choice-zoom"

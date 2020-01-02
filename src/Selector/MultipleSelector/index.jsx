@@ -21,6 +21,7 @@ class MultipleSelector extends React.Component {
     searchValue: PropTypes.string,
     labelInValue: PropTypes.bool,
     maxTagCount: PropTypes.number,
+    removeIcon: PropTypes.node,
     maxTagPlaceholder: PropTypes.oneOfType([
       PropTypes.node,
       PropTypes.func,
@@ -85,6 +86,7 @@ class MultipleSelector extends React.Component {
       selectorValueList, choiceTransitionName, prefixCls,
       onChoiceAnimationLeave,
       labelInValue, maxTagCount, maxTagPlaceholder,
+      removeIcon
     } = this.props;
     const { rcRefSelect: { onMultipleSelectorRemove } } = this.context;
 
@@ -101,6 +103,7 @@ class MultipleSelector extends React.Component {
         key={value}
         label={label}
         value={value}
+        removeIcon={removeIcon}
         onRemove={onMultipleSelectorRemove}
       />
     ));

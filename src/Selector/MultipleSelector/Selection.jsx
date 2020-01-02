@@ -10,6 +10,7 @@ class Selection extends React.Component {
     prefixCls: PropTypes.string,
     maxTagTextLength: PropTypes.number,
     onRemove: PropTypes.func,
+    removeIcon: PropTypes.node,
 
     label: PropTypes.node,
     value: PropTypes.string,
@@ -25,7 +26,7 @@ class Selection extends React.Component {
   render() {
     const {
       prefixCls, maxTagTextLength,
-      label, value, onRemove,
+      label, value, onRemove, removeIcon
     } = this.props;
 
     let content = label || value;
@@ -45,7 +46,10 @@ class Selection extends React.Component {
           <span
             className={`${prefixCls}-selection__choice__remove`}
             onClick={this.onRemove}
-          />
+          >{
+            removeIcon
+          }
+          </span>
         }
         <span className={`${prefixCls}-selection__choice__content`}>
           {content}

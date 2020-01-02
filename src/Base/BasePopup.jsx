@@ -39,10 +39,14 @@ class BasePopup extends React.Component {
     // HOC
     renderSearch: PropTypes.func,
     renderPopupContainer: PropTypes.func,
+
+    showHeader: PropTypes.bool,
+    tableTitle: PropTypes.func,
+    tableFooter: PropTypes.func,
   };
 
   static defaultProps = {
-    renderPopupContainer: node=>node
+    renderPopupContainer: node => node
   }
 
   static contextTypes = {
@@ -122,15 +126,16 @@ class BasePopup extends React.Component {
       // loadData,
       ariaId,
       renderSearch,
-      renderPopupContainer
+      renderPopupContainer,
+      showHeader,
+      tableTitle,
+      tableFooter
     } = this.props;
     const {
       rcRefSelect: {
         onPopupKeyDown,
       }
     } = this.context;
-
-
 
     const ele = (
       <div
@@ -140,8 +145,13 @@ class BasePopup extends React.Component {
         tabIndex={-1}
       >
         {renderSearch ? renderSearch() : null}
-        <Table prefixCls={`${prefixCls}-table`} useFixedHeader showHeader={false} columns={columns} data={data} scroll={tableScroll} emptyText={emptyText}
-          defaultExpandAllRows={defaultExpandAllRows} defaultExpandedRowKeys={defaultExpandedRowKeys} onRow={this.handleRow}/>
+        <Table prefixCls={`${prefixCls}-table`}
+          useFixedHeader showHeader={showHeader}
+          tableTitle={tableTitle} tableFooter={tableFooter}
+          columns={columns} data={data} scroll={tableScroll} emptyText={emptyText}
+          defaultExpandAllRows={defaultExpandAllRows}
+          defaultExpandedRowKeys={defaultExpandedRowKeys}
+          onRow={this.handleRow}/>
       </div>
     );
 
