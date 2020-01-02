@@ -147,7 +147,7 @@ class BasePopup extends React.Component {
         {renderSearch ? renderSearch() : null}
         <Table prefixCls={`${prefixCls}-table`}
           useFixedHeader showHeader={showHeader}
-          tableTitle={tableTitle} tableFooter={tableFooter}
+          title={tableTitle} footer={tableFooter}
           columns={columns} data={data} scroll={tableScroll} emptyText={emptyText}
           defaultExpandAllRows={defaultExpandAllRows}
           defaultExpandedRowKeys={defaultExpandedRowKeys}
