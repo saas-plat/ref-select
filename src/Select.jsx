@@ -132,6 +132,8 @@ class Select extends React.Component {
     onChange: PropTypes.func,
     onDropdownVisibleChange: PropTypes.func,
     renderPopupContainer: PropTypes.func,
+    onMouseEnter: PropTypes.func,
+    onMouseLeave: PropTypes.func,
   };
 
   static childContextTypes = {

@@ -24,6 +24,8 @@ export const selectorPropTypes = {
   onClick: PropTypes.func,
   onBlur: PropTypes.func,
   onFocus: PropTypes.func,
+  onMouseEnter: PropTypes.func,
+  onMouseLeave: PropTypes.func,
   removeSelected: PropTypes.func,
   tableRowFilterProp: PropTypes.string,
 
@@ -182,6 +184,8 @@ export default function (modeName) {
           tabIndex={myTabIndex}
           onFocus={this.onFocus}
           onBlur={this.onBlur}
+          onMouseEnter={this.onMouseEnter}
+          onMouseLeave={this.onMouseLeave}
           onKeyDown={onSelectorKeyDown}
         >
           <span
