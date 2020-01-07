@@ -184,8 +184,8 @@ export default function (modeName) {
           tabIndex={myTabIndex}
           onFocus={this.onFocus}
           onBlur={this.onBlur}
-          onMouseEnter={this.onMouseEnter}
-          onMouseLeave={this.onMouseLeave}
+          onMouseEnter={this.props.onMouseEnter}
+          onMouseLeave={this.props.onMouseLeave}
           onKeyDown={onSelectorKeyDown}
         >
           <span
