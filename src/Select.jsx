@@ -998,7 +998,9 @@ class Select extends React.Component {
       prefixCls,
       removeIcon,
       referIcon,
-      onRefer
+      onRefer,
+      onMouseEnter,
+      onMouseLeave,
     } = this.props;
     const isMultiple = this.isMultiple();
 
@@ -1015,6 +1017,8 @@ class Select extends React.Component {
       removeIcon,
       referIcon,
       onRefer,
+      onMouseEnter,
+      onMouseLeave,
       dropdownPrefixCls: `${prefixCls}-dropdown`,
       ariaId: this.ariaId,
     };
